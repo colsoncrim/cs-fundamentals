@@ -1,0 +1,60 @@
+1) What is the main difference between a stack and a queue?
+
+      The main difference is that stack uses LIFO method to access and add data elements,
+      and queue uses FIFO method to access and add data elements.
+
+
+
+2) What are the similarities between stacks and queues?
+
+      Some similarities between stacks and queues are they are both linear data structures,
+      and they both have a front input point and a back (rear) output or exit point.
+
+
+
+3) Imagine you are an engineer tasked with implementing the UNDO and REDO options in a word processor
+   such as Microsoft Word. Which data structure would you use for each option and why?
+
+      In this case, I would use LIFO. If the user wants to undo what they just input to the word processor, the program
+      will have to remove the last change that was made.
+
+
+
+Programming Questions:
+
+1) Given a string, reverse it using a stack. For example, the string "Bloc!" should be converted to "!colB".
+
+      function reverse(string) {
+        var stack = [];
+          for (i = 0; i < string.length; i++) {
+            stack.push(string[i]);
+          }
+        var stringReversed = 'Bloc!';
+          for (i = stack.length - 1; i >= 0; i--) {
+            stringReversed+= stack[i];
+          }
+          return stringReversed;
+      }
+2) Implement the pop method of a stack using one queue. Make a FIFO data structure mirror the functionality of a LIFO data
+   structure. Since the internal list is not the same as defined in the checkpoint, it may help to rewrite the pseudocode first.
+
+      class QueueOne {
+        constructor() {
+          this.queueOne = [];
+        }
+        enqueue(element) {
+          this.queue.push(element);
+        }
+        dequeue(this.queue) {
+          var temp = this.queue[0];
+          for (i = 1; i < this.queue.length; i++) {
+            this.queue[i - 1] = this.queue[i];
+          }
+          this.queue.pop();
+          return temp;
+        }
+        pop(element) {
+          this.enqueue(element);
+          this.dequeue();
+        }
+      }
