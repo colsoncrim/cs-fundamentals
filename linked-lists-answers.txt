@@ -1,0 +1,142 @@
+1) What are some pros and cons of using linked lists instead of arrays?
+
+    Pros: Linked lists take up less of the available memory because each node is independent in memory. Linked lists can
+    easily grow to large sizes without the operating system having to rearrange the physical memory space to make room for them.
+
+
+    Cons: Trying to access a node can be inefficient because each node may exist anywhere in the memory. To access, the program
+          must start at the the head and move its way through the list one by one until it arrives at the desired node.
+
+
+2) Come up with a real world example of a linked list.
+
+    Searching for an item in a grocery store. You begin your search at the store entrance and make your way through until
+    you find the items you need.
+
+
+Programming Questions:
+
+
+
+1) The linked list push function should take a value, create a node, and add it to the end of a list. Below is pseudocode for
+a push function for a singly linked list. However, there is something wrong with it. Submit both an explanation of the bug and
+a functional implementation of the method.
+
+
+    This push function only works if the list contains one node. If the list contains more than one node, it will not work.
+
+    FUNCTION push(element)
+      CREATE node
+      SET node.value TO element
+      SET node.next TO null
+
+      IF head node is absent
+        THEN SET head to node
+      ELSE
+        SET current to head
+      END IF
+
+      SET count to zero
+      WHILE current.next is NOT null
+        current = current.next
+        INCREMENT count
+      END WHILE
+      SET current.next to node
+      END FUNCTION
+
+
+
+
+2) Given an unsorted singly linked list, remove all duplicates from the linked list.
+
+      function LinkedList() {
+      this.head = null;
+      this.tail = null;
+      }
+
+      function Node(value, next) {
+      this.value = value;
+      this.next = next;
+      }
+
+      LinkedList.prototype.addToTail = function(value) {
+      var newNode = new Node(value, null);
+      if (this.tail) this.tail.next = newNode;
+      else this.head = newNode;
+      this.tail = newNode;
+      }
+
+      LinkedList.prototype.removeDuplicates = function() {
+      if(!this.head || !this.head.next) {
+        return false;
+      }
+      let count = {}
+      let currentNode = this.head;
+      let nextNode = currentNode.next;
+
+      while(nextNode) {
+        if (count[nextNode.value]) {
+          currentNode.next = nextNode.next
+        } else {
+          count[nextNode.value] = true;
+          currentNode = nextNode;
+        }
+        nextNode = nextNode.next;
+      }
+      return this;
+      }
+
+      var newList = new LinkedList();
+      newList.addToTail(1);
+      newList.addToTail(2);
+      newList.addToTail(2);
+      newList.addToTail(3);
+      newList.addToTail(3);
+      newList.removeDuplicates();
+      console.log(newList);
+
+3) Given an unsorted singly linked list, reverse it.
+
+      function LinkedList() {
+      this.head = null;
+      this.tail = null;
+      }
+
+      function Node(value, next) {
+      this.value = value;
+      this.next = next;
+      }
+
+      LinkedList.prototype.addToTail = function(value) {
+      var newNode = new Node(value, null);
+      if (this.tail) this.tail.next = newNode;
+      else this.head = newNode;
+      this.tail = newNode;
+      }
+
+      LinkedList.prototype.reverseList = function() {
+      if(!this.head) {
+      return false;
+      } else if(!this.head.next) {
+      return this.head.value;
+      }
+      let current = this.head;
+      let next = null;
+      let previous = null;
+      let finalTail = this.tail;
+      while(current) {
+      next = current.next;
+      current.next = previous;
+      previous = current;
+      current = next;
+      }
+      this.head = previous;
+      }
+
+      var newList = new LinkedList();
+      newList.addToTail(1);
+      newList.addToTail(2);
+      newList.addToTail(3);
+      newList.addToTail(4);
+      newList.reverseList();
+      console.log(newList);
