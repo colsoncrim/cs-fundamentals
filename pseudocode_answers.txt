@@ -39,13 +39,20 @@ Write the following algorithms in pseudocode:
 
 4) Using the pseudocode you wrote for the previous question, implement it in any computer language of your choice.
 
-  function findNumber(phonebookArray) {
-      for (i = 0; i < phonebookArray.length; i++) {
-        if (i === 555-555-5555) {
-          return true;
-        }
-      else {
-        return false;
-      }
+var numbers = [555-555-5553, 555-555-5554, 555-555-5555];
+
+function numberSearch(number) {
+  for (var i = 0; i < numbers.length; i++) {
+    if (numbers[i] === number) {
+      console.log("Found number" + number + "at index" + i);
+      return true;
     }
+
   }
+  return false;
+}
+
+var number = numberSearch(555-555-5555);
+if (!item) {
+  console.log("Number does not exist");
+}
