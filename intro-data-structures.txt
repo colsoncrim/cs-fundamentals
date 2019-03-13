@@ -24,7 +24,11 @@
 
         c) Find a person in line named "Josh." This function should return the position of 2 in the array, (recall that arrays are 0-based).
 
-            var index = lineMembers.indexOf(2);
+            var lineMembers = ["Vivian", "Ava", "Josh", "Patrick", "Mike"];
+            var found = lineMembers.find(item => item === "Josh");
+
+                console.log(found);
+
 
 
 
@@ -32,14 +36,14 @@
 
             var lineMembers = ["Vivian", "Ava", "Josh", "Patrick", "Mike"];
 
-            function searchMember(members, "Emily") {
-              for (i = 0; i < lineMembers.length; i++) {
-                if (i === "Emily") {
+            function searchMember(lineMembers) {
+              for (var i = 0; i < lineMembers.length; i++) {
+                if (i === lineMember[i]) {
                     return true;
                 }
-                else {
-                    return false;
-                }
+              }
+              else {
+                  return false;
               }
             }
 
