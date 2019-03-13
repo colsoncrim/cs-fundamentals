@@ -49,94 +49,64 @@ a functional implementation of the method.
 
 2) Given an unsorted singly linked list, remove all duplicates from the linked list.
 
-      function LinkedList() {
-      this.head = null;
-      this.tail = null;
-      }
+function LinkedList() {
+    this._head = null;
+    this._size =  0;
+}
 
-      function Node(value, next) {
-      this.value = value;
-      this.next = next;
-      }
-
-      LinkedList.prototype.addToTail = function(value) {
-      var newNode = new Node(value, null);
-      if (this.tail) this.tail.next = newNode;
-      else this.head = newNode;
-      this.tail = newNode;
-      }
-
-      LinkedList.prototype.removeDuplicates = function() {
-      if(!this.head || !this.head.next) {
-        return false;
-      }
-      let count = {}
-      let currentNode = this.head;
-      let nextNode = currentNode.next;
-
-      while(nextNode) {
-        if (count[nextNode.value]) {
-          currentNode.next = nextNode.next
-        } else {
-          count[nextNode.value] = true;
-          currentNode = nextNode;
+LinkedList.prototype = {
+    createNode: function(val) {
+        return {
+            data: val,
+            next: null
         }
-        nextNode = nextNode.next;
-      }
-      return this;
-      }
+    },
+    addToTail: function(val) {
+        var current,
+        newNode = this.createNode(val);
+        if(this._head == null) {
+            this._head = newNode;
+        }
+        else {
+            current = this._head;
+            while(current.next != null) {
+                current = current.next;
+            }
+            current.next = newNode;
+        }
+        this._size++;
+    },
+    removeDuplicates: function() {
+        prev = this._head;
+        current = this._head.next;
+        hash = {};
+        while(current != null) {
+            if(!hash[current.data]) {
+                hash[current.data] = true;
+            } else {
+                prev.next = current.next;
+                this._size--;
+            }
+            prev = current;
+            current = current.next;
+        }
+    }
+}
 
-      var newList = new LinkedList();
-      newList.addToTail(1);
-      newList.addToTail(2);
-      newList.addToTail(2);
-      newList.addToTail(3);
-      newList.addToTail(3);
-      newList.removeDuplicates();
-      console.log(newList);
 
 3) Given an unsorted singly linked list, reverse it.
 
-      function LinkedList() {
-      this.head = null;
-      this.tail = null;
-      }
+function LinkedListNode(value) {
+  this.value = value;
+  this.next = null;
+}
 
-      function Node(value, next) {
-      this.value = value;
-      this.next = next;
-      }
-
-      LinkedList.prototype.addToTail = function(value) {
-      var newNode = new Node(value, null);
-      if (this.tail) this.tail.next = newNode;
-      else this.head = newNode;
-      this.tail = newNode;
-      }
-
-      LinkedList.prototype.reverseList = function() {
-      if(!this.head) {
-      return false;
-      } else if(!this.head.next) {
-      return this.head.value;
-      }
-      let current = this.head;
-      let next = null;
-      let previous = null;
-      let finalTail = this.tail;
-      while(current) {
-      next = current.next;
-      current.next = previous;
-      previous = current;
-      current = next;
-      }
-      this.head = previous;
-      }
-
-      var newList = new LinkedList();
-      newList.addToTail(1);
-      newList.addToTail(2);
-      newList.addToTail(3);
-      newList.addToTail(4);
-      newList.reverseList();
-      console.log(newList);
+function reverse(head) {
+  if (!head || !head.next) {
+    return head;
+  }
+  let tmp = reverse(head.next);
+  head.next.next = head;
+  head.next = undefined;
+  return tmp;
+}
