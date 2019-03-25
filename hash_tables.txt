@@ -1,0 +1,210 @@
+1) What is a hash table?
+
+    A hash table (also known as a hash data structure) is a type of data structure that stores each value
+    by linking it to a key, which forms key-value pairs. Keys must be unique, which means a value can be
+    retrieved by looking up its unique key.
+
+
+2) What is hashing?
+
+    Hashing is the conversion from a string to a numerical index.
+
+
+3) How does a hash table store data?
+
+    Hash tables store key-value pairs by placing them at a particular location in an array maintained
+    internally in the hash table.
+
+
+4) How are hash tables and objects different?
+
+    Hash tables are a particular data structure which utilizes javascript objects to create a numerically
+    indexed structure to store key-value pairs. They are different from objects because objects don't store key-value
+    pairs, they store properties.
+
+5) Determine whether you would use a hash table or an object to store each of the following pieces of data:
+
+      - A list of pets and their unique names. *Object*
+      - The name, age, and the birthday of your best friend. *Object*
+      - The name and location of every company in a given city. *Hash table*
+      - All of the books checked out from a library by a particular individual. *Hash table*
+      - The primary and secondary phone numbers for a contact. *Hash table*
+
+
+Programming Questions:
+
+1) Create a hash table that allows a sales associate to enter a customer's name, address, and phone
+   number into the system and look up customers using their phone numbers.
+
+   var hash = (string, max) => {
+   var hash = 0;
+    for (var i = 0; i < string.length; i++) {
+      hash += string.charCodeAt(i);
+    }
+      return hash % max;
+    };
+
+  let HashTable = function() {
+
+  let storage = [];
+  const storageLimit = 100;
+
+  this.add = function(key,value) {
+    var index = hash(key, storageLimit);
+      if (storage[index] === undefined) {
+        storage[index] = [
+          [key,value]
+          ];
+      } else {
+        var inserted = false;
+          for (var i = 0; i < storage[index].length; i++) {
+            if (storage[index][i][0] === key) {
+              storage[index][i][1] = value;
+              inserted = true;
+          }
+        }
+        if (inserted === false) {
+        storage[index].push([key,value]);
+        }
+      }
+    };
+
+    this.lookup = function(key) {
+      var index = hash(key, storageLimit);
+        if (storage[index] === undefined) {
+          return undefined;
+        } else {
+          for (var i = 0; i < storage[index].length; i++) {
+            if (storage[index][i][0] === key) {
+              return storage[index][i][1];
+          }
+        }
+      }
+    };
+
+};
+
+var ht = new HashTable();
+ht.add(99999,{name:'Kim', address:' 123 Pretend St.'})
+ht.add(1000,{name:'Jack',address:'1234 Pretend St.'});
+ht.add(5000,{name:'Mark',address:'12345 Pretend St.'});
+
+console.log(ht.lookup(99999));
+console.log(ht.lookup(5000));
+console.log(ht.lookup(1000));
+
+
+
+2) Create a hash table that allows a store owner to track their store's inventory and quantity.
+
+
+var hash = (string,max) =>{
+  var hash= 0
+  for(var i=0; i<string.length;i++){
+    hash += string.charCodeAt(i)
+  }
+  return hash % max;
+};
+
+let HashTable = function(){
+  let storage = [];
+  const storageLimit= 5;
+
+
+this.add = function(key, value) {
+    var index = hash(key, storageLimit);
+    if (storage[index] === undefined) {
+      storage[index] = [
+        [key, value]
+      ];
+    } else {
+      var inserted = false;
+      for (var i = 0; i < storage[index].length; i++) {
+        if (storage[index][i][0] === key) {
+          storage[index][i][1] = value;
+          inserted = true;
+        }
+      }
+      if (inserted === false) {
+        storage[index].push([key, value]);
+      }
+    }
+  };
+
+this.search = function(key) {
+  var index = hash(key, storageLimit);
+  if (storage[index] === undefined) {
+    return undefined;
+  } else {
+    for (var i = 0; i < storage[index].length; i++) {
+      if (storage[index][i][0] === key) {
+        return storage[index][i][1];
+      }
+    }
+  }
+};
+
+};
+
+var ht = new HashTable();
+ht.add('Sweatshirts',1000);
+ht.add('T-shirts',500);
+ht.add('Shorts', 300);
+ht.add('Jeans',210);
+
+ht.search('Jeans')
+
+
+3) Create a hash table that allows digital copies of newspapers to be entered and searched
+   by publisher and publication date.
+
+let hash = (string, max)=> {
+ var hash = 0;
+ for(var i=0; i< string.length;i++){
+   hash+= string.charCodeAt(i);
+ }
+ return hash % max;
+}
+
+class Newspaper {
+ constructor() {
+   this.storage = [];
+   this.storageLimit = 60;
+ }
+
+ add(publisher, pubDate) {
+   let key = publisher + pubDate;
+   let index = hash(key, this.storageLimit);
+   let data = [publisher, pubDate];
+     if (this.storage[index] === undefined) {
+       this.storage[index] = [ ];
+   }
+   this.storage[index].push(data);
+   }
+
+ search(publisher, pubDate) {
+   let key = publisher + pubDate;
+   let index = hash(key, this.storageLimit);
+   let result = [];
+
+   if (!this.storage[index]) { return 'No results were found for this search' }
+     this.storage[index].forEach(entry => {
+      if (entry[0] === publisher && entry[1] === pubDate) {
+       result.push(entry);
+     }
+   })
+   return result;
+ }
+}
+
+
+let news = new Newspaper();
+news.add('Publisher 1', '2012');
+news.add('Publisher 2', '2013');
+news.add('Publisher 3','2014');
+news.add('Publisher 4', '2015');
+
+console.log(news.search('Publisher 1', '2012'));
+console.log(news.search('Publisher 2', '2013'));
+console.log(news.search('Publisher 3','2014'));
+console.log(news.search('Publisher 4', '2015'));
