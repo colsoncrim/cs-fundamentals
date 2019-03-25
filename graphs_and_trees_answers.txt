@@ -1,0 +1,114 @@
+1.What is a binary tree and what makes it unique to other trees?
+
+    A binary tree is a data structure made up of nodes, where each node contains a left child
+    (always a lesser value than the node above), and a right node (always a larger value). The
+    topmost node in the tree is called the root node.
+
+2. What is a heuristic?
+
+    A heuristic is a technique designed for solving a problem more quickly when classic methods
+    are too slow, or for finding an approximate solution when classic methods fail to find
+    any exact solution.
+
+
+3. What is another problem besides the shortest-path problem that requires the use of heuristics?
+
+    Artificial Intelligence algorithms based on machine learning where the computer builds up a
+    knowledge base from previous experiences is another application of heuristic algorithms.
+    In this case the algorithm uses a self-maintained knowledge base to inform decisions and make
+    “educated guesses” based on previous experiences.
+
+
+4. What is the difference between a depth-first search and a breadth-first search?
+
+    The major difference between BFS and DFS is that BFS proceeds level by level while DFS follows
+    first a path from the starting node to the ending node, then another path from the start to end,
+    and so on until all nodes are visited. BFS also uses the queue for storing the nodes whereas DFS
+    uses the stack for traversal of the nodes.
+
+
+5. Explain in your own words what an undirected, a-cyclic, unweighted graph is.
+
+    This type of graph is one that connects two nodes, so that they don't form loops, and do not assign
+    the cost of travel between nodes.
+
+
+6. What kind of graph is a binary search tree?
+
+    A binary search tree is a directed, a-cyclic, unweighted graph.
+
+
+
+
+Programming Questions:
+
+
+For the following questions, describe in words how you could solve the problem and then do so. Use the
+depiction of the Binary Search Tree to refer to the examples.
+
+
+1. Given a Binary Search Tree and a value, write a function that checks to see whether the value exists
+   within the tree.
+   Example: The value 10 exists in the tree. The value 23 does not exist in the tree.
+
+   Written explanation: I will write a function that uses breadth-first-search to check to see whether a
+   certain value exists in a given tree. If/else statements would be advantageous in this case to check
+   each individual value.
+
+
+   function findNumber(numberToFind) {
+    var currentNode = this.root;
+
+    while (currentNode != null) {
+      if (numberToFind === currentNode.value) {
+        return "The value " + currentNode.value + " exists in the list";
+      } else if (numberToFind < currentNode.value){
+        currentNode = currentNode.left;
+      } else {
+      currentNode = currentNode.right;
+    }
+  }
+    return "The value " + numberToFind + " does not exist in the list";
+}
+
+
+2. Given a Binary Search Tree and two nodes, n1 and n2, write a function that finds the distance
+   between the two nodes.
+
+   In order to find the distance between n1 and n2, we will need to find the LCA (lowest common ancestor)
+   of the two nodes. Once we do so, then we can find the distance between LCA and the 2 nodes.
+
+
+   function getDistanace(root, n1, n2) {
+
+      var ancestor = LCA(root, n1, n2);
+      var depth1 = getDepth(root, ancestor);
+      var depth2 = getDepth(root, n1);
+      var depth3 = getDepth(root, n2);
+
+      return depth2 + depth3 - 2 * depth1;
+    }
+
+function LCA(currentNode, n1, n2) {
+  if (currentNode == null)
+    return null;
+  if (currentNode == n1 || currentNode == n2)
+    return currentNode;
+  var left = LCA(currentNode.left, n1, n2);
+  var right = LCA(currentNode.right, n1, n2);
+  if(left != null && right != null)
+    return currentNode;
+  return left == null? right: left;
+}
+
+function getDepth(currentNode, targetNode) {
+  if (currentNode == null)
+    return -1;
+  if (currentNode == targetNode)
+    return 0;
+  var left = getDepth(currentNode.left, targetNode);
+  var right = getDepth(currentNode.right, targetNode);
+  if (left == -1 && right == -1)
+    return -1;
+  return left == -1? right + 1: left + 1;
+}
