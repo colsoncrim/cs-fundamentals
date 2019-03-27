@@ -1,0 +1,76 @@
+1. Using proper pseudo-code, describe the following primitive algorithms:
+
+        Making coffee;
+
+        FUNCTION brewCoffee()
+          FIND coffee in pantry
+          FIND coffee filter
+          PUT coffee filter in coffee maker
+          PUT coffee in coffee filter
+
+          IF coffee maker is not on
+            TURN ON
+          ELSE
+            WAIT for brewing to complete
+          END IF
+
+          FOR EACH cup ready
+            REMOVE cup
+          PUT sugar in coffee
+          END FOR
+        END FUNCTION
+
+
+        Washing dishes;
+
+        FUNCTION washDishes()
+          LOAD dirty dishes
+          PUT detergent in dishwasher
+          TURN on dishwasher
+            IF dishwasher still on
+              WAIT
+            ELSE
+              REMOVE dishes and place in cupboards
+            END IF
+          END FUNCTION
+
+
+        A choice of your own.
+
+        IF student's grade is greater than or equal to 60
+          PRINT 'pass'
+        ELSE
+          PRINT 'fail'
+        END IF
+
+
+
+
+
+2. As with the knot algorithm, there may be more than one way to solve the problem.
+   It is essential to try to pick the best algorithm for a situation. Name three
+   companies who created an algorithm that made them successful, e.g., Google's
+   search algorithm. It doesn't need to be a tech example (such as a recipe or
+   manufacturing a product). Google's algorithm produces more relevant results
+   than other search engines; what about each of your cases make them stand out?
+
+
+      -Ford: Ford was one of the first car manufacturers that created an efficient
+      manufacturing process for building cars on a large scale.
+
+      -Google Maps: Google Maps was, and still is, the leading GPS app that is used
+      all around the world for navigating people from point A to point B. The "fastest
+      route" algorithm has made this possible.
+
+      -Uber: Uber's algorithm has made them the most popular ride sharing/ taxi replacement
+      service in the world.
+
+
+
+3. Hypothesize about what constitutes an efficient algorithm versus an inefficient
+   algorithm.
+
+
+      Algorithmic efficiency is a property of an algorithm that relates to the number of
+      computational resources that is used by the algorithm. You can determine whether an algorithm
+      is efficient or inefficient by measuring the resource usage. 
