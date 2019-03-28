@@ -1,0 +1,59 @@
+1. Write pseudocode for bubble sort.
+
+    BEGIN bubbleSort(list)
+
+      FOR all elements of list
+        IF list[i] > list[i+1]
+          swap(list[i], list[i+1])
+        END IF
+      END FOR
+
+      RETURN list
+
+    END bubbleSort
+
+
+
+    2. Write pseudocode for quicksort.
+
+    PROCEDURE quickSort(left, right)
+
+      IF right-left <= 0
+        RETURN
+      ELSE
+        pivot = A[right]
+        partition = partitionFunc(left, right, pivot)
+        quickSort(left,partition-1)
+        quickSort(partition+1,right)
+      END IF
+
+    END PROCEDURE
+
+
+
+3. We talked about time complexity in a previous checkpoint, and how to get an idea
+   of the efficiency of an algorithm. After looking at the pseudocode for the above
+   sorting methods, identify why merge sort and quick sort are much more efficient
+   than the others. Walking through each algorithm with a few sample collections may
+   help.
+
+   Quick sort is considered the best sorting algorithm. The time complexity of quick
+   sort is O(n log n) in the best case, and O(n^2) in the worst case. It has the
+   best performance in the average case for most inputs, therefore it is the most
+   efficient.
+
+   The time complexity of merge sort is O(n log n), which is the same as quick sort.
+   However, merge sort uses extra space, and quick sort requires little space.
+
+   Both quick sort and merge sort are more efficient than the other sorting methods
+   in this checkpoint because they are better at handling large and advanced lists.
+
+
+4. All of the sorts addressed in this checkpoint are known as comparison sorts.
+   Research bucket sort and explain how it works. What is the ideal input for bucket
+   sort?
+
+   Bucket sort is a sorting algorithm that works by distributing the elements of an
+   array into a number of buckets. Each bucket is then sorted individually either using
+   a different sorting algorithm, or by recursively applying the bucket sorting
+   algorithm. It is mainly useful when input is uniformly distributed over a range.
