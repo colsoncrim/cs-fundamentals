@@ -1,0 +1,87 @@
+1. What is a real-life scenario that uses linear search?
+
+
+    Using Uber: Your Uber arrives in a parking lot. You have the information of the
+    car on your phone (make, model, color, license plate number). To ensure you get in
+    the correct car, you begin searching for cars, one by one, in the parking lot until
+    you find the car that has all of the matching properties that you're looking for.
+
+
+
+2. What is a real-life scenario that uses binary search?
+
+    Searching for a book in a library: The target element is the book you want to
+    read. Rather than aimlessly wandering the library until you find the desired
+    book, we can apply a binary search algorithm to help us find it. First determine
+    the total number of racks, then find the middle rack. If first half of the racks
+    don't contain the last name and title of the book we are looking for, then we begin
+    to search the second half, and so on until we find the book.
+
+
+
+3. Given the alphabetically sorted collection in this checkpoint, how many iterations
+   would it take to find the value G using linear search?
+
+    7 iterations.
+
+
+4. Given the alphabetically sorted collection in this checkpoint, how many iterations
+   would it take to find the value G using binary search?
+
+    3 iterations.
+
+
+5. Given an unsorted collection of a million items, which algorithm would you choose
+   between linear search and binary search? Explain your reasoning.
+
+    I would have to use linear search because binary search only functions properly
+    on a pre-sorted collection.
+
+
+
+6. Given a sorted collection of a million items, which algorithm would you choose
+   between linear search and binary search? Explain your reasoning.
+
+    I would use binary search because I am presented with a pre-sorted collection.
+    Using binary search in this case would be much more efficient than linear search.
+
+
+
+PROGRAMMING ASSIGNMENT:
+
+
+1. You and a friend have set a wager to see who can find the word "Albatross" in
+   the dictionary the fastest. Write a program to allow you to win the bet.
+
+   function binarySearch(albatross, dictionary) {
+   let first = 0;    //left endpoint
+   let last = dictionary.length - 1;   //right endpoint
+   let position = -1;
+   let found = false;
+   let middle;
+
+   while (found === false && first <= last) {
+       middle = Math.floor((first + last)/2);
+       if (dictionary[middle] == albatross) {
+           found = true;
+           position = middle;
+       } else if (dictionary[middle] > albatross) {  //if in lower half
+           last = middle - 1;
+       } else {  //in in upper half
+           first = middle + 1;
+       }
+   }
+   return position;
+}
+
+
+
+2. You work at a pet store, and a child has asked you to net the only white-spotted
+   goldfish from the fish tank. Write a program that will help you net the right fish.
+
+   function linearSearch(array, whiteSpotted){
+    for(let i = 0; i < array.length; i++){
+      if(array[i] === whiteSpotted) return i;
+    }
+    return -1;
+  }
