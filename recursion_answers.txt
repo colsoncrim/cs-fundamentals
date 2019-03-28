@@ -1,0 +1,90 @@
+1. Define and compare recursion and iteration.
+
+    Recursion is when a statement in a function calls itself repeatedly. The
+    iteration is when a loop repeatedly executes until the controlling condition
+    becomes false. The main difference between the two is that a recursion
+    is a process always applied to a function.
+
+
+2. Name five algorithms that are commonly implemented by recursion.
+
+
+    -Binary search
+    -Merge sort
+    -Quick
+    -Factorial operation
+    -Fibonacci sequence
+
+
+3. When should you use recursion, and when should you avoid recursion? Give examples
+   for each.
+
+    Cases to use recursion:
+
+    -When there is at least one base case. An example would be a depth first search
+    for a graph.
+
+
+    Avoid recursion:
+
+    -When there are no base cases. A procedure calling itself without at least
+    one base case will cause infinite recursion (similar to an infinite loop).
+    An example of when to avoid recursion is the Fibonacci sequence.
+
+
+
+4. Compare the recursive and iterative solutions to the three algorithms from the
+   checkpoint (factorial, maximum, and fibonacci). What is similar, and what is
+   different?
+
+  Similar: Both the recursive and iterative solutions achieved the desired result
+  with each algorithm.
+
+  Different: The way in which the solution is achieved. The iterative solutions
+  are much easier to follow, and look cleaner than the recursive solutions.
+
+
+
+5. Given a multi-dimensional collection (such as an array) where the number of
+   dimensions is unknown, write a recursive algorithm to count the number of
+   items in the entire collection.
+
+   function countDimensions(array) {
+    if (array.length) {
+      return 1 + countDimensions (array.slice(1))
+    }
+    else {
+      return 0;
+    }
+   }
+
+
+6. A palindrome is a word or phrase whose spelling is the same either direction
+   (e.g., racecar). Write a recursive algorithm to determine if a given word or
+   phrase is a palindrome.
+
+   isPalindrome = (string) => {
+      let strLen = Math.floor(string.length / 2);
+      string = string.toLocaleLowerCase();
+
+      for (let i = 0; i < strLen; i++) {
+        if (string[i] !== string[strLen - i - 1]) {
+          return false;
+        }
+      }
+      return true;
+    }
+
+
+
+
+7. Google Easter Egg: Google the term "recursion". Google will prompt you with
+   "Did you mean: recursion". Explain why this behavior exhibits properties of
+   recursion.
+
+
+   There are no spelling errors in your first search of the word "recursion", it
+   actually just a private joke created by Google. Recursion is a mathematical
+   term that means " the application of a function to its own values to generate
+   an infinite sequence of values." Once you click on Google's suggestion, it returns
+   the same exact result, creating an infinite loop of searches.
