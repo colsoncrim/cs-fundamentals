@@ -59,7 +59,7 @@ depiction of the Binary Search Tree to refer to the examples.
    function findNumber(numberToFind) {
     var currentNode = this.root;
 
-    while (currentNode != null) {
+    for (let i = 0; i < currentNode.length; i++) {
       if (numberToFind === currentNode.value) {
         return "The value " + currentNode.value + " exists in the list";
       } else if (numberToFind < currentNode.value){
