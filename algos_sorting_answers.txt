@@ -1,33 +1,39 @@
 1. Write pseudocode for bubble sort.
 
-    BEGIN bubbleSort(list)
-
-      FOR all elements of list
-        IF list[i] > list[i+1]
-          swap(list[i], list[i+1])
-        END IF
-      END FOR
-
-      RETURN list
-
-    END bubbleSort
+  swapped = true
+  while swapped
+    swapped = false
+    for j from 0 to N - 1
+      if a[j] > a[j + 1]
+        swap( a[j], a[j + 1] )
+        swapped = true
 
 
 
     2. Write pseudocode for quicksort.
 
-    PROCEDURE quickSort(left, right)
+  Quicksort(a, low, high) {
+    if (low < high) {
+      pivot_location = Partition(a, low, high)
+      Quicksort(a, low, pivot_location)
+      Quicksort(a, pivot_location + 1, high)
+    }
+  }
 
-      IF right-left <= 0
-        RETURN
-      ELSE
-        pivot = A[right]
-        partition = partitionFunc(left, right, pivot)
-        quickSort(left,partition-1)
-        quickSort(partition+1,right)
-      END IF
+  Partition(a, low, high) {
+    pivot = a[low]
+    leftwall = low
 
-    END PROCEDURE
+    for i = low + 1 to high {
+      if (a[i] < pivot) then {
+        swap(a[i], a[leftwall + 1])
+        leftwall = leftwall + 1
+      }
+    }
+    swap(pivot, a[leftwall])
+
+    return (leftwall)
+  }
 
 
 
@@ -46,7 +52,9 @@
    However, merge sort uses extra space, and quick sort requires little space.
 
    Both quick sort and merge sort are more efficient than the other sorting methods
-   in this checkpoint because they are better at handling large and advanced lists.
+   in this checkpoint because they are better at handling large, advanced lists, and
+   run much more efficiently when presented with nested for/while loops.
+
 
 
 4. All of the sorts addressed in this checkpoint are known as comparison sorts.
